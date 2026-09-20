@@ -44,6 +44,30 @@ Chaque modification peut être annulée (`Ctrl+Z`) et est enregistrée automatiq
 Pour ranger les données ailleurs (ex. un dossier synchronisé), définir la variable d'environnement
 `PECULE_DATA_DIR` avant le lancement.
 
+## Déployer sur un serveur (conteneur LXC, machine virtuelle, Raspberry Pi)
+
+Sur un Debian ou un Ubuntu avec systemd, une seule commande installe Node.js, l'application et un
+service qui démarre automatiquement :
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tristanbasb/pecule/main/install.sh | sudo bash
+```
+
+L'application répond ensuite sur `http://<ip-du-serveur>:5180`. Relancer le script met l'installation
+à jour : `sudo bash /opt/pecule/install.sh`.
+
+Réglages possibles, à placer devant la commande : `PECULE_DIR`, `PECULE_PORT`, `PECULE_USER`,
+`PECULE_DATA_DIR`.
+
+```bash
+PECULE_PORT=8080 PECULE_DATA_DIR=/var/lib/pecule sudo -E bash install.sh
+```
+
+Deux limites à connaître avant d'ouvrir l'accès : l'application n'a **aucune authentification** (à
+réserver à un réseau de confiance, ou à placer derrière Tailscale ou l'authentification d'un reverse
+proxy), et l'accès doit se faire par adresse IP — un nom de domaine serait refusé par le contrôle
+d'hôte de l'API.
+
 ## Accès depuis un téléphone (même Wi-Fi)
 
 ```bash
