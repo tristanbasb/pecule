@@ -1,0 +1,360 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/mona-sans/wdth.css';
+@import '@fontsource-variable/martian-mono/wdth.css';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/*
+ * Pécule — « papier fiduciaire » : fond minéral clair, encre bleu de Prusse,
+ * filets dorés réservés au panneau de patrimoine (la signature guillochée).
+ */
+:root {
+  color-scheme: light;
+  --paper: #f0f2ee;
+  --surface: #fdfdfc;
+  --surface-2: #f5f7f3;
+  --surface-3: #e9ede7;
+  --line: #e1e5de;
+  --field: #818a98;
+  --ink: #0f1a2b;
+  --ink-2: #4a5568;
+  --ink-3: #5e6878;
+  --brand: #173a5e;
+  --brand-hover: #21507f;
+  --on-brand: #ffffff;
+  --brand-soft: #e2e9f1;
+  --brand-text: #173a5e;
+  --focus: #173a5e;
+  --brass: #9a7b3f;
+  --good: #0e7a43;
+  --good-soft: #e3f2e9;
+  --bad: #c0362c;
+  --on-bad: #ffffff;
+  --bad-soft: #f9e5e2;
+  --warn: #9a5b00;
+  --warn-fill: #fab219;
+  --warn-soft: #fbf0d9;
+
+  --vault: #122b47;
+  --vault-2: #173659;
+  --vault-ink: #f4f1e8;
+  --vault-ink-2: #b9c3d0;
+  --gilt: #d8b26a;
+  --vault-good: #6fd39b;
+  --vault-bad: #ff9b90;
+
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #4a3aa7;
+  --series-8: #e34948;
+  --grid: #e6e9e3;
+  --axis: #c3c9c0;
+
+  --shadow-sm: 0 1px 2px rgb(15 26 43 / 0.05);
+  --shadow-md: 0 1px 2px rgb(15 26 43 / 0.04), 0 10px 28px -12px rgb(15 26 43 / 0.16);
+  --shadow-lg: 0 28px 72px -18px rgb(15 26 43 / 0.34);
+  --overlay: rgb(11 17 25 / 0.42);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #0b1119;
+  --surface: #141a24;
+  --surface-2: #1a2230;
+  --surface-3: #222b3a;
+  --line: #243043;
+  --field: #647085;
+  --ink: #edf1f7;
+  --ink-2: #aeb7c6;
+  --ink-3: #8791a3;
+  --brand: #9dbde6;
+  --brand-hover: #b5cff0;
+  --on-brand: #0b1119;
+  --brand-soft: #1c2b40;
+  --brand-text: #9dbde6;
+  --focus: #9dbde6;
+  --brass: #d8b26a;
+  --good: #3dbe7a;
+  --good-soft: #173226;
+  --bad: #ff7b6e;
+  --on-bad: #0b1119;
+  --bad-soft: #3a1e1e;
+  --warn: #f0b03e;
+  --warn-fill: #fab219;
+  --warn-soft: #3a2c12;
+
+  --vault: #0f2239;
+  --vault-2: #143050;
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #008300;
+  --series-7: #9085e9;
+  --series-8: #e66767;
+  --grid: #212a38;
+  --axis: #3a4557;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -12px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 28px 72px -18px rgb(0 0 0 / 0.7);
+  --overlay: rgb(3 6 10 / 0.62);
+}
+
+@theme inline {
+  --font-sans: 'Mona Sans Variable', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  --font-mono: 'Martian Mono Variable', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-field: var(--field);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-on-brand: var(--on-brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-text: var(--brand-text);
+  --color-brass: var(--brass);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-bad: var(--bad);
+  --color-on-bad: var(--on-bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-warn: var(--warn);
+  --color-warn-fill: var(--warn-fill);
+  --color-warn-soft: var(--warn-soft);
+  --color-vault: var(--vault);
+  --color-vault-2: var(--vault-2);
+  --color-vault-ink: var(--vault-ink);
+  --color-vault-ink-2: var(--vault-ink-2);
+  --color-gilt: var(--gilt);
+  --color-vault-good: var(--vault-good);
+  --color-vault-bad: var(--vault-bad);
+  --color-s1: var(--series-1);
+  --color-s2: var(--series-2);
+  --color-s3: var(--series-3);
+  --color-s4: var(--series-4);
+  --color-s5: var(--series-5);
+  --color-s6: var(--series-6);
+  --color-s7: var(--series-7);
+  --color-s8: var(--series-8);
+
+  --shadow-card: var(--shadow-md);
+  --shadow-float: var(--shadow-lg);
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100dvh;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--axis) transparent;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  /* Une grille sans colonnes explicites ne doit jamais s'élargir au-delà de son conteneur
+     (les libellés tronqués gonfleraient sinon la colonne implicite sur mobile).
+     Les utilitaires grid-cols-* sont dans une couche supérieure et restent prioritaires. */
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--brand) 24%, transparent);
+  }
+  button:not(:disabled),
+  [role='button']:not([aria-disabled='true']),
+  label[for],
+  select {
+    cursor: pointer;
+  }
+  input[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+  [data-theme='dark'] input[type='date']::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--ink-3);
+    opacity: 0.8;
+  }
+}
+
+/* Chiffres « billet de banque » : la même famille, en largeur étendue. */
+@utility display {
+  font-stretch: 125%;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+}
+
+@utility wide {
+  font-stretch: 112%;
+}
+
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Mode discret : les montants sont floutés, révélés au survol. */
+.money {
+  transition: filter 0.18s ease;
+}
+.privacy .money {
+  filter: blur(6px);
+}
+.privacy .money:hover {
+  filter: none;
+}
+
+/* Fenêtres modales (élément <dialog> natif). */
+dialog.sheet {
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+  width: min(var(--sheet-width, 560px), calc(100vw - 32px));
+  max-width: none;
+  max-height: min(90dvh, 900px);
+  overflow: hidden;
+}
+dialog.sheet[open] {
+  display: flex;
+  flex-direction: column;
+  animation: sheet-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+dialog.sheet::backdrop {
+  background: var(--overlay);
+  backdrop-filter: blur(3px);
+  animation: fade-in 0.2s ease;
+}
+@media (max-width: 640px) {
+  dialog.sheet {
+    margin: auto 0 0;
+    width: 100vw;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 0;
+    max-height: 94dvh;
+  }
+  dialog.sheet[open] {
+    animation: sheet-up 0.26s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+/* Listes déroulantes flottantes (API Popover). */
+[popover].floating {
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+[popover].floating:popover-open {
+  animation: pop-in 0.14s ease-out;
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+}
+@keyframes sheet-up {
+  from {
+    transform: translateY(40px);
+    opacity: 0.4;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.rise {
+  animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Rosace guillochée : les filets se tracent au chargement, comme une gravure. */
+.guilloche path,
+.guilloche circle {
+  stroke: currentColor;
+  vector-effect: non-scaling-stroke;
+}
+.guilloche path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.guilloche-band {
+  animation: engrave 1.8s cubic-bezier(0.3, 0.7, 0.2, 1) both;
+}
+.guilloche-band path {
+  animation: draw 2.4s cubic-bezier(0.35, 0.6, 0.2, 1) both;
+  animation-delay: inherit;
+}
+.guilloche-frame {
+  opacity: 0.55;
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+@keyframes engrave {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
